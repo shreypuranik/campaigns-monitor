@@ -1,0 +1,41 @@
+
+{% include 'campaignsapp/header.html.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h4>Related</h4>
+            <ul>
+                <li><a href="../add-new-staff">Add a new staff member</a></li>
+            </ul>
+            </div>
+        <div class="col-sm-8 mainContent">
+            <h4>Show Existing Staff</h4>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Title</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for staffmember in staffmembers %}
+     <tr>
+         <td>{{ staffmember.id }}</td>
+         <td>{{ staffmember.name }}</td>
+         <td>{{ staffmember.jobtitle}}</td>
+     </tr>
+    {% endfor %}
+
+
+    </tbody>
+</table>
+            </div>
+        <div class="col-sm-1">
+            </div>
+
+        </div>
+</div>
+{% include 'campaignsapp/footer.html.twig' %}
