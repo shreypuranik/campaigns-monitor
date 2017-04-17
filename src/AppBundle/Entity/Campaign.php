@@ -25,12 +25,12 @@ class Campaign
     private $campaignName;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $campaignStartDate;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $campaignEndDate;
 
@@ -43,6 +43,8 @@ class Campaign
      * @ORM\Column(type="integer")
      */
     private $staffMemberId;
+
+    private $staffMemberName;
 
 
     /**
@@ -174,4 +176,23 @@ class Campaign
     {
         return $this->staffMemberId;
     }
+
+    /**
+     * Set staffMemberName
+     * @param $staffMemberName
+     */
+    public function setStaffMemberName($staffMemberName)
+    {
+        $this->staffMemberName = $staffMemberName;
+    }
+
+    /**
+     * Get staffMemberName
+     * @return mixed
+     */
+    public function getStaffMemberName()
+    {
+        return $this->staffMemberName;
+    }
+
 }

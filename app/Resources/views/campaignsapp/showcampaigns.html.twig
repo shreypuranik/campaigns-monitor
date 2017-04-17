@@ -1,0 +1,47 @@
+
+{% include 'campaignsapp/header.html.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h4>Related</h4>
+            <ul>
+                <li><a href="../add-campaign">Add a new campaign</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 mainContent">
+            <h4>Show All Campaigns</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Staff Owner</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for campaign in campaigns %}
+                    <tr>
+                        <td>{{ campaign.campaignid }}</td>
+                        <td>{{ campaign.campaignname }}</td>
+                        <td>{{ campaign.campaigndescription}}</td>
+                        <td>{{ campaign.campaignstartdate}}</td>
+                        <td>{{ campaign.campaignenddate}}</td>
+                        <td>{{ campaign.staffmembername}}</td>
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-1">
+        </div>
+
+    </div>
+</div>
+{% include 'campaignsapp/footer.html.twig' %}

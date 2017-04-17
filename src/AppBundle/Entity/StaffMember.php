@@ -32,7 +32,6 @@ class StaffMember
     private $jobTitle;
 
 
-
     /**
      * Get id
      *

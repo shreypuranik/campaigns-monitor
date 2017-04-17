@@ -1,0 +1,81 @@
+
+{% include 'campaignsapp/header.html.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h4>Related</h4>
+            <ul>
+                <li><a href="../staff">View all staff</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 mainContent">
+
+            <h3>Add a new campaign</h3>
+
+            <div class="container">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        {{ form_label(form.campaignname) }}
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.campaignname) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        {{ form_label(form.campaignstartdate) }}
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.campaignstartdate) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        {{ form_label(form.campaignenddate) }}
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.campaignenddate) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        {{ form_label(form.campaigndescription) }}
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.campaigndescription) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        {{ form_label(form.staffmemberid) }}
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.staffmemberid) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ form_widget(form.save) }}
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% include 'campaignsapp/footer.html.twig' %}
