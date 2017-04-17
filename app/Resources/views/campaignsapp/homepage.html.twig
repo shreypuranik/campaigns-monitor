@@ -1,0 +1,42 @@
+{% include 'campaignsapp/header.html.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h4>Get Started</h4>
+            <ul>
+                <li><a href="../add-season">Add a new season to get started</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 mainContent">
+            <h4>Campaign Monitor | Current Data</h4>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Seasons</th>
+                    <th>Campaigns</th>
+                    <th>Staff</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <td>{{ seasons }}</td>
+                    <td>{{ campaigns }}</td>
+                    <td>{{ staff }}</td>
+
+
+
+                </tbody>
+                </table>
+
+
+
+        </div>
+        <div class="col-sm-1">
+        </div>
+
+    </div>
+</div>
+
+
+{% include 'campaignsapp/footer.html.twig' %}

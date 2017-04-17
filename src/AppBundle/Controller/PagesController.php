@@ -28,6 +28,29 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class PagesController extends Controller
 {
 
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $staffMembers = $em->getRepository("AppBundle:StaffMember")->findAll();
+        $campaigns = $em->getRepository("AppBundle:Campaign")->findAll();
+        $seasons = $em->getRepository("AppBundle:Season")->findAll();
+
+        $data = array();
+        $data['staff'] = count($staffMembers);
+        $data['campaigns'] = count($campaigns);
+        $data['seasons'] = count($seasons);
+        return $this->render('campaignsapp/homepage.html.twig', $data);
+    }
+
+
+
+
+
     /**
      * Add a new staff member
      * @Route("/add-new-staff")
