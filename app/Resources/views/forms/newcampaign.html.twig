@@ -6,7 +6,7 @@
         <div class="col-sm-3">
             <h4>Related</h4>
             <ul>
-                <li><a href="../staff">View all staff</a></li>
+                <li><a href="../campaigns">View all campaigns</a></li>
             </ul>
         </div>
         <div class="col-sm-8 mainContent">
@@ -52,6 +52,16 @@
                         {{ form_widget(form.campaigndescription) }}
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        {{ form_label(form.seasonid) }}
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.seasonid) }}
+                    </div>
+                </div>
+
 
                 <div class="row">
                     <div class="col-sm-3">

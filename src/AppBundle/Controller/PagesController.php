@@ -10,6 +10,8 @@ use Doctrine\ORM\Query\Expr\Select;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\DomCrawler\Field\TextareaFormField;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -92,6 +94,9 @@ class PagesController extends Controller
         {
             $staffMemberObj = $em->getRepository("AppBundle:StaffMember")->findBy(array('id' => $soleCampaign->getStaffMemberId()));
             $soleCampaign->setStaffMemberName($staffMemberObj[0]->getName());
+
+            $seasonObj = $em->getRepository("AppBundle:Season")->findOneBy(array('seasonId' => $soleCampaign->getSeasonId()));
+            $soleCampaign->setSeasonName($seasonObj->getSeasonName());
             $campaigns[] = $soleCampaign;
         }
 
@@ -102,9 +107,60 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Show all the existing season/theme records
+     * @Route("/seasons")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function displayExistingSeasons()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $seasons = $em->getRepository("AppBundle:Season")->findAll();
 
+        $data = array();
+        $data['seasons'] = $seasons;
+
+        return $this->render('campaignsapp/showseasons.html.twig', $data);
+
+    }
 
     /**
+     * Add a new campaign season
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/add-season")
+     */
+    public function addNewSeason(Request $request)
+    {
+        $season = new Season();
+        $season->setSeasonName("Season name goes here ");
+        $season->setSeasonDescription("Longer description goes here");
+
+        $form = $this->createFormBuilder($season)
+            ->add('seasonname', TextType:: class, array('label' => 'Name (eg Christmas)'))
+            ->add('seasondescription', TextareaType::class, array('label' => 'Description'))
+            ->add('save', SubmitType::class, array('label' => 'Create new season'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if (($form->isSubmitted())
+            && ($form->isValid())) {
+            $season = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($season);
+            $em->flush();
+
+            return $this->displayExistingSeasons();
+        }
+
+        return $this->render('forms/newseason.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+    }
+
+    /**
+     * Add a new campaign
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/add-campaign")
      */
@@ -117,6 +173,13 @@ class PagesController extends Controller
         foreach($staffMembers as $staffMember)
         {
             $staffMembersForDropDown[$staffMember->getName()] = $staffMember->getID();
+        }
+
+        $allSeasons = $em->getRepository("AppBundle:Season")->findAll();
+
+        foreach($allSeasons as $season)
+        {
+            $seasons[$season->getSeasonName()] = $season->getSeasonID();
         }
 
 
@@ -132,12 +195,14 @@ class PagesController extends Controller
             ->add('campaigndescription', TextType::class, array('label' => 'Brief Description'))
             ->add('campaignstartdate', TextType::class, array('label' => 'Start Date'))
             ->add('campaignenddate', TextType::class, array('label' => 'End Date'))
+            ->add('seasonid', ChoiceType::class, array(
+                'choices' => $seasons,
+                'label' => 'Campaign Season/Theme'
+            ))
             ->add('staffmemberid', ChoiceType::class, array(
                 'choices' => $staffMembersForDropDown,
                 'label' => 'Staff owner'
                 ))
-
-
 
             ->add('save', SubmitType::class, array('label' => 'Create New Campaign'))
             ->getForm();

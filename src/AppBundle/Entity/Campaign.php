@@ -42,9 +42,16 @@ class Campaign
     /**
      * @ORM\Column(type="integer")
      */
+    private $seasonId;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $staffMemberId;
 
     private $staffMemberName;
+
+    private $seasonName;
 
 
     /**
@@ -195,4 +202,45 @@ class Campaign
         return $this->staffMemberName;
     }
 
+
+    /**
+     * Set seasonId
+     *
+     * @param integer $seasonId
+     *
+     * @return Campaign
+     */
+    public function setSeasonId($seasonId)
+    {
+        $this->seasonId = $seasonId;
+
+        return $this;
+    }
+
+    /**
+     * Get seasonId
+     *
+     * @return integer
+     */
+    public function getSeasonId()
+    {
+        return $this->seasonId;
+    }
+
+    /**
+     * Get seasonName
+     * @return mixed
+     */
+    public function getSeasonName()
+    {
+        return $this->seasonName;
+    }
+    /**
+     * Declare the season name
+     * @param $seasonName
+     */
+    public function setSeasonName($seasonName)
+    {
+        $this->seasonName = $seasonName;
+    }
 }

@@ -6,34 +6,26 @@
         <div class="col-sm-3">
             <h4>Related</h4>
             <ul>
-                <li><a href="../add-campaign">Add a new campaign</a></li>
+                <li><a href="../add-season">Add a new season</a></li>
             </ul>
         </div>
         <div class="col-sm-8 mainContent">
-            <h4>Show All Campaigns</h4>
+            <h4>Existing Seasons</h4>
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Season/Theme</th>
-                    <th>Staff Owner</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                {% for campaign in campaigns %}
+                {% for season in seasons %}
                     <tr>
-                        <td>{{ campaign.campaignid }}</td>
-                        <td>{{ campaign.campaignname }}</td>
-                        <td>{{ campaign.campaigndescription}}</td>
-                        <td>{{ campaign.campaignstartdate}}</td>
-                        <td>{{ campaign.campaignenddate}}</td>
-                        <td>{{ campaign.seasonname }}</td>
-                        <td>{{ campaign.staffmembername}}</td>
+                        <td>{{ season.seasonid }}</td>
+                        <td>{{ season.seasonname }}</td>
+                        <td>{{ season.seasondescription}}</td>
                     </tr>
                 {% endfor %}
 
