@@ -10,6 +10,17 @@
             </ul>
         </div>
         <div class="col-sm-9 mainContent">
+
+            <div class="col-sm-9 mainContent">
+
+                {% if totalcount == 0 %}
+                    <div class="alert alert-danger" role="danger">
+                        <span>There are no themes/seasons in the system Click <a href="../add-season">here </a> to get started! </span>
+                    </div>
+
+                {% endif%}
+
+
             <h4>Existing Seasons</h4>
             <table class="table table-striped">
                 <thead>
@@ -38,4 +49,5 @@
 
     </div>
 </div>
+    </div>
 {% include 'campaignsapp/footer.html.twig' %}

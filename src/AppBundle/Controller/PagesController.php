@@ -101,6 +101,7 @@ class PagesController extends Controller
 
         $data = array();
         $data['staffmembers'] = $staffMembers;
+        $data['totalcount'] = count($staffMembers);
 
         return $this->render('campaignsapp/showstaff.html.twig', $data);
 
@@ -148,6 +149,7 @@ class PagesController extends Controller
 
         $data = array();
         $data['seasons'] = $seasons;
+        $data['totalcount'] = count($seasons);
 
         return $this->render('campaignsapp/showseasons.html.twig', $data);
 

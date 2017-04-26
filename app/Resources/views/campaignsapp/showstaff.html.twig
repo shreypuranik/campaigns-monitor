@@ -9,7 +9,16 @@
                 <li><a href="../add-new-staff">Add a new staff member</a></li>
             </ul>
             </div>
+
         <div class="col-sm-9 mainContent">
+
+            {% if totalcount == 0 %}
+                <div class="alert alert-danger" role="danger">
+                    <span>There are no staff members in the system Click <a href="../add-new-staff">here </a> to get started! </span>
+                </div>
+
+            {% endif%}
+
             <h4>Show Existing Staff</h4>
 <table class="table table-striped">
     <thead>
