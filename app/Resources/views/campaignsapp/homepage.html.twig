@@ -1,5 +1,8 @@
 {% include 'campaignsapp/header.html.twig' %}
 
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
@@ -9,6 +12,14 @@
             </ul>
         </div>
         <div class="col-sm-8 mainContent">
+
+            {% if newbuild %}
+            <div class="alert alert-success" role="alert">
+                <span>Amost ready to go. Add a <a href="../add-season">campaign season/theme</a> to get started! </span>
+            </div>
+
+            {% endif%}
+
             <h4>Campaign Monitor | Current Data</h4>
 
             <table class="table table-striped">

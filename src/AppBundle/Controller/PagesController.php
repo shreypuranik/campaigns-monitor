@@ -6,6 +6,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\StaffMember;
 use AppBundle\Entity\Campaign;
 use AppBundle\Entity\Season;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\Expr\Select;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -29,6 +30,7 @@ class PagesController extends Controller
 {
 
 
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/")
@@ -44,6 +46,9 @@ class PagesController extends Controller
         $data['staff'] = count($staffMembers);
         $data['campaigns'] = count($campaigns);
         $data['seasons'] = count($seasons);
+        $data['newbuild'] = ((array_sum($data)) == 0 ? true: false);
+
+
         return $this->render('campaignsapp/homepage.html.twig', $data);
     }
 
