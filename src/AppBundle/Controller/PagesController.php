@@ -130,6 +130,7 @@ class PagesController extends Controller
 
         $data = array();
         $data['campaigns'] = $campaigns;
+        $data['totalcampaigns'] = count($campaigns);
 
         return $this->render('campaignsapp/showcampaigns.html.twig', $data);
     }

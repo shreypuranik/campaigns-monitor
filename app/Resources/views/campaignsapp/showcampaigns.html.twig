@@ -10,6 +10,15 @@
             </ul>
         </div>
         <div class="col-sm-9 mainContent">
+
+            {% if totalcampaigns == 0 %}
+                <div class="alert alert-danger" role="danger">
+                    <span>There are no campaigns in the system. Click <a href="../add-campaign">here </a> to get started! </span>
+                </div>
+
+            {% endif%}
+
+
             <h4>Show All Campaigns</h4>
             <table class="table table-striped">
                 <thead>
