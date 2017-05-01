@@ -6,10 +6,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\StaffMember;
 use AppBundle\Entity\Campaign;
 use AppBundle\Entity\Season;
+use AppBundle\AppStatus;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\Expr\Select;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+
 /**
  * Class PagesController
  * @package AppBundle\Controller
@@ -29,27 +30,15 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class PagesController extends Controller
 {
 
-
-
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/")
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $staffMembers = $em->getRepository("AppBundle:StaffMember")->findAll();
-        $campaigns = $em->getRepository("AppBundle:Campaign")->findAll();
-        $seasons = $em->getRepository("AppBundle:Season")->findAll();
+        $baseData = $this->get('app.app_status')->getExistingData();
 
-        $data = array();
-        $data['staff'] = count($staffMembers);
-        $data['campaigns'] = count($campaigns);
-        $data['seasons'] = count($seasons);
-        $data['newbuild'] = ((array_sum($data)) == 0 ? true: false);
-
-
-        return $this->render('campaignsapp/homepage.html.twig', $data);
+        return $this->render('campaignsapp/homepage.html.twig', $baseData);
     }
 
 
