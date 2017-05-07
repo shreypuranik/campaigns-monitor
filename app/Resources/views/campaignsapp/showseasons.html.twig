@@ -20,7 +20,7 @@
 
                 {% endif%}
 
-
+            {% if (totalcount > 0) and (newbuild != true) %}
             <h4>Existing Seasons</h4>
             <table class="table table-striped">
                 <thead>
@@ -43,6 +43,7 @@
 
                 </tbody>
             </table>
+                {% endif%}
         </div>
         <div class="col-sm-0">
         </div>

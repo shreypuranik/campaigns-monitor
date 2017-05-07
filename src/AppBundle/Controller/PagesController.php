@@ -41,10 +41,6 @@ class PagesController extends Controller
         return $this->render('campaignsapp/homepage.html.twig', $baseData);
     }
 
-
-
-
-
     /**
      * Add a new staff member
      * @Route("/add-new-staff")
@@ -88,9 +84,12 @@ class PagesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $staffMembers  = $em->getRepository("AppBundle:StaffMember")->findAll();
 
+
         $data = array();
         $data['staffmembers'] = $staffMembers;
         $data['totalcount'] = count($staffMembers);
+        $data['newbuild'] = $this->get('app.app_status')->isNewBuild();
+
 
         return $this->render('campaignsapp/showstaff.html.twig', $data);
 
@@ -121,6 +120,7 @@ class PagesController extends Controller
         $data = array();
         $data['campaigns'] = $campaigns;
         $data['totalcampaigns'] = count($campaigns);
+        $data['newbuild'] = $this->get('app.app_status')->isNewBuild();
 
         return $this->render('campaignsapp/showcampaigns.html.twig', $data);
     }
@@ -139,6 +139,7 @@ class PagesController extends Controller
         $data = array();
         $data['seasons'] = $seasons;
         $data['totalcount'] = count($seasons);
+        $data['newbuild'] = $this->get('app.app_status')->isNewBuild();
 
         return $this->render('campaignsapp/showseasons.html.twig', $data);
 
