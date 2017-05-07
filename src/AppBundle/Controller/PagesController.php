@@ -118,6 +118,7 @@ class PagesController extends Controller
         }
 
         $data = array();
+
         $data['campaigns'] = $campaigns;
         $data['totalcampaigns'] = count($campaigns);
         $data['newbuild'] = $this->get('app.app_status')->isNewBuild();
@@ -135,6 +136,10 @@ class PagesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $seasons = $em->getRepository("AppBundle:Season")->findAll();
+        foreach($seasons as $season){
+            $campaignsForSeason = $em->getRepository("AppBundle:Campaign")->findBySeasonId($season->getSeasonId());
+            $season->campaigns = count($campaignsForSeason);
+        }
 
         $data = array();
         $data['seasons'] = $seasons;
@@ -179,6 +184,13 @@ class PagesController extends Controller
         ));
 
     }
+
+
+
+
+
+
+
 
     /**
      * Add a new campaign
