@@ -2,6 +2,9 @@
 
 ![A basic listing tool built in Symfony](https://raw.githubusercontent.com/shreypuranik/campaigns-monitor/master/screenshots/landing.png "A basic listing tool built in Symfony")
 
+
+![Built with Symfony](http://pixel-cookers.github.io/built-with-badges/symfony/symfony-long-flat.png)
+
 # What is it?
 
 This is a basic listing tool that allows you to store campaign notes. It's built using Symfony 3, and over time, I hope to expand the functionality that the tool provides.
