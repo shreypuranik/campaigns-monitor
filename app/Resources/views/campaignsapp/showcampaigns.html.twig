@@ -19,7 +19,7 @@
             {% endif%}
 
            {% if (newbuild != true ) and (totalcampaigns > 0) %}
-            <h4>Show All Campaigns</h4>
+            <h2>Show All Campaigns</h2>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -30,6 +30,7 @@
                     <th>End Date</th>
                     <th>Season</th>
                     <th>Owner</th>
+                    <th>Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,7 @@
                         <td>{{ campaign.campaignenddate}}</td>
                         <td>{{ campaign.seasonname }}</td>
                         <td>{{ campaign.staffmembername}}</td>
+                        <td><a href="edit-event/{{ campaign.campaignid }}">Edit</a></td>
                     </tr>
                 {% endfor %}
 
