@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle;
+namespace EventsBundle;
 
 use Doctrine\ORM\EntityManager;
 
@@ -21,9 +21,9 @@ class AppStatus
     public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
-        $staffMembers = $this->em->getRepository("AppBundle:StaffMember")->findAll();
-        $campaigns = $this->em->getRepository("AppBundle:Campaign")->findAll();
-        $seasons = $this->em->getRepository("AppBundle:Season")->findAll();
+        $staffMembers = $this->em->getRepository("EventsBundle:StaffMember")->findAll();
+        $campaigns = $this->em->getRepository("EventsBundle:Campaign")->findAll();
+        $seasons = $this->em->getRepository("EventsBundle:Season")->findAll();
 
         $this->baseData = array();
         $this->baseData['staff'] = count($staffMembers);

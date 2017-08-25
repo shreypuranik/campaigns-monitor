@@ -5,8 +5,8 @@ parameters:
 
 services:
     #service_name:
-    #    class: AppBundle\Directory\ClassName
+    #    class: EventsBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
     app.app_status:
-      class: AppBundle\AppStatus
+      class: EventsBundle\AppStatus
       arguments: ["@doctrine.orm.entity_manager"]

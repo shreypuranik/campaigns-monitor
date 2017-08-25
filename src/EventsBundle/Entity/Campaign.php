@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace EventsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Event
- * @package AppBundle\Entity
+ * @package EventsBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="campaigns")
  */

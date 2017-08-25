@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace EventsBundle\Controller;
 
 
-use AppBundle\Entity\StaffMember;
-use AppBundle\Entity\Campaign;
-use AppBundle\Entity\Season;
-use AppBundle\AppStatus;
+use EventsBundle\Entity\StaffMember;
+use EventsBundle\Entity\Campaign;
+use EventsBundle\Entity\Season;
+use EventsBundle\AppStatus;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\Expr\Select;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +23,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * Class PagesController
- * @package AppBundle\Controller
+ * @package EventsBundle\Controller
  * Controller class to handle all pages
  * within the system
  */
@@ -82,7 +82,7 @@ class PagesController extends Controller
     public function displayExistingStaffMembers()
     {
         $em = $this->getDoctrine()->getManager();
-        $staffMembers  = $em->getRepository("AppBundle:StaffMember")->findAll();
+        $staffMembers  = $em->getRepository("EventsBundle:StaffMember")->findAll();
 
 
         $data = array();
@@ -104,15 +104,15 @@ class PagesController extends Controller
     public function displayExistingCampaigns()
     {
         $em = $this->getDoctrine()->getManager();
-        $allCampaigns = $em->getRepository("AppBundle:Campaign")->findAll();
+        $allCampaigns = $em->getRepository("EventsBundle:Campaign")->findAll();
 
         $campaigns = array();
         foreach($allCampaigns as $soleCampaign)
         {
-            $staffMemberObj = $em->getRepository("AppBundle:StaffMember")->findBy(array('id' => $soleCampaign->getStaffMemberId()));
+            $staffMemberObj = $em->getRepository("EventsBundle:StaffMember")->findBy(array('id' => $soleCampaign->getStaffMemberId()));
             $soleCampaign->setStaffMemberName($staffMemberObj[0]->getName());
 
-            $seasonObj = $em->getRepository("AppBundle:Season")->findOneBy(array('seasonId' => $soleCampaign->getSeasonId()));
+            $seasonObj = $em->getRepository("EventsBundle:Season")->findOneBy(array('seasonId' => $soleCampaign->getSeasonId()));
             $soleCampaign->setSeasonName($seasonObj->getSeasonName());
             $campaigns[] = $soleCampaign;
         }
@@ -135,9 +135,9 @@ class PagesController extends Controller
     public function displayExistingSeasons()
     {
         $em = $this->getDoctrine()->getManager();
-        $seasons = $em->getRepository("AppBundle:Season")->findAll();
+        $seasons = $em->getRepository("EventsBundle:Season")->findAll();
         foreach($seasons as $season){
-            $campaignsForSeason = $em->getRepository("AppBundle:Campaign")->findBySeasonId($season->getSeasonId());
+            $campaignsForSeason = $em->getRepository("EventsBundle:Campaign")->findBySeasonId($season->getSeasonId());
             $season->campaigns = count($campaignsForSeason);
         }
 
@@ -201,14 +201,14 @@ class PagesController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $staffMembers  = $em->getRepository("AppBundle:StaffMember")->findAll();
+        $staffMembers  = $em->getRepository("EventsBundle:StaffMember")->findAll();
 
         foreach($staffMembers as $staffMember)
         {
             $staffMembersForDropDown[$staffMember->getName()] = $staffMember->getID();
         }
 
-        $allSeasons = $em->getRepository("AppBundle:Season")->findAll();
+        $allSeasons = $em->getRepository("EventsBundle:Season")->findAll();
 
         foreach($allSeasons as $season)
         {
